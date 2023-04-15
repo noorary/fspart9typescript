@@ -14,7 +14,8 @@ const calculateExercise = (exerciseHours: Array<number>, target: number): exerci
   const average = (exerciseHours.reduce((total, item) => total + item)) / exerciseHours.length;
   const rating = calculateRating(target, average);
 
-  return {
+  const result: Result =
+  {
     periodLength: exerciseHours.length,
     trainingDays: trainingDays,
     success: average >= target ? true : false,
@@ -23,6 +24,8 @@ const calculateExercise = (exerciseHours: Array<number>, target: number): exerci
     target: target,
     average: average
   }
+
+  return result
 }
 
 const mapRatingDescription = (rating: number): string => {
@@ -53,6 +56,16 @@ interface ExerciseInputParameters {
   exerciseAmounts: number[]
 }
 
+interface Result {
+  periodLength: number,
+  trainingDays: number,
+  success: boolean,
+  rating: number,
+  ratingDescription: string,
+  target: number,
+  average: number 
+}
+
 const parseExerciseArguments = (args: Array<string>): ExerciseInputParameters => {
   if (args.length < 4 ) throw new Error("You should give at least target and one exercise amount as arguments");
 
@@ -66,7 +79,7 @@ const parseExerciseArguments = (args: Array<string>): ExerciseInputParameters =>
     return acc;
   })
 
-  console.log(parameterArray.map(x => isNaN(x)));
+  //console.log(parameterArray.map(x => isNaN(x)));
 
   return {
     target: parameterTarget,
