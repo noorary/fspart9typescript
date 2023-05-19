@@ -1,6 +1,6 @@
 This is a repository for HY Full Stack course [part 9](https://fullstackopen.com/en/part9)
 
-Total hours: 6.75h
+Total hours: 7.5h
 
 
 27.8. 16.00-16.30 0.5h
@@ -11,4 +11,4 @@ Total hours: 6.75h
 
 15.4. 14.00-14.45 0.75h
 
-19.5. 20.30-22.00 1.5h
+19.5. 20.30-22.45 2.25h
