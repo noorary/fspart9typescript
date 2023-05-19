@@ -1,5 +1,5 @@
-const calculateBmi = (height: number, weight: number): string => {
-  if (weight <= 0 || height <= 0) { throw new Error('Weight and height cannot be equal or less than 0') }
+export const calculateBmi = (height: number, weight: number): string => {
+  if (weight <= 0 || height <= 0) { throw new Error('Weight and height cannot be equal or less than 0'); }
 
   const bmi : number = weight / ((height / 100) ^2);
 
@@ -20,35 +20,40 @@ const calculateBmi = (height: number, weight: number): string => {
       return 'Obese (Class II)';
     case (bmi >=40):
       return 'Obese (Class III)';
+    default:
+      return `invalid bmi ${bmi}`;
   }
-}
+};
 
-interface InputParameters {
-  height: number,
-  weight: number
-}
+// interface InputParameters {
+//   height: number,
+//   weight: number
+// }
 
-const parseArguments = (args: Array<string>): InputParameters => {
-  if (args.length < 4 || args.length > 4) throw new Error("Give height and weight as arguments");
+// const parseArguments = (args: Array<string>): InputParameters => {
+//   console.log(args);
+//   if (args.length < 4 || args.length > 4) throw new Error("Give height and weight as arguments");
 
-  const height = Number(args[2]);
-  const weight = Number(args[3]);
+//   const height = Number(args[2]);
+//   const weight = Number(args[3]);
 
-  if (isNaN(height) || isNaN(weight)) { throw new Error("Given arguments are not numbers")}
+//   console.log(height, weight);
 
-  return {
-    height: height,
-    weight: weight
-  }
-}
+//   if (isNaN(height) || isNaN(weight)) { throw new Error("Given arguments are not numbers");}
+
+//   return {
+//     height: height,
+//     weight: weight
+//   };
+// };
 
 
 
-try {
-  const { height, weight } = parseArguments(process.argv);
-  console.log(calculateBmi(height, weight)); 
-} catch (ex) {
-  console.log(`Something bad happened: ${ex}`)
-}
+// try {
+//   const { height, weight } = parseArguments(process.argv);
+//   console.log(calculateBmi(height, weight)); 
+// } catch (ex) {
+//   console.log(`Something bad happened: ${ex}`);
+// }
 
 //console.log(calculateBmi(180, 74))
