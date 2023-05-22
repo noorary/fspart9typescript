@@ -26,9 +26,18 @@ export interface Patient {
     ssn: SSN;
     gender: Gender;
     occupation: Occupation;
+    entries: Entry[];
 }
 
-export type NonSensitivePatient = Omit<Patient, 'ssn'>;
+export interface Entry {
+    id: Id;
+    description: string;
+    date: string;
+    specialist: string;
+    diagnosisCodes?: Code[];
+}
+
+export type NonSensitivePatient = Omit<Patient, 'ssn' | 'entries'>;
 
 export type NewPatient = Omit<Patient, 'id'>;
 

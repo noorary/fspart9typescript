@@ -1,12 +1,12 @@
 import express from 'express';
 import patientService from '../services/patientService';
 import utils from '../utils';
-import { NewPatient } from '../types';
+import { NewPatient, Patient } from '../types';
 
 const router = express.Router();
 
 router.get('/', (_req, res) => {
-    res.send(patientService.getNonSensitivePatients());
+    res.send(patientService.getPatients());
 });
 
 router.post('/', (req, res) => {
@@ -23,6 +23,16 @@ router.post('/', (req, res) => {
         errorMessage += ' Error: ' + error.message;
         }
         res.status(400).send(errorMessage);
+    }
+});
+
+router.get('/:id', (req, res) => {
+    const patient: Patient | undefined = patientService.getPatient(req.params.id);
+    if (patient) {
+        res.send(patient);
+    }
+    else {
+        res.sendStatus(404);
     }
 });
 
