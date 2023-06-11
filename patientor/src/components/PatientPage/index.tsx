@@ -1,5 +1,5 @@
 import React from 'react';
-import { Patient } from '../../types';
+import { Diagnosis, Patient } from '../../types';
 import { useParams } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import TransgenderIcon from '@mui/icons-material/Transgender';
@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 
 interface PatientPageProps {
   patients: Patient[];
+  diagnosis: Diagnosis[];
 }
 
 export const PatientPage = (props: PatientPageProps) => {
@@ -27,6 +28,15 @@ export const PatientPage = (props: PatientPageProps) => {
         <Typography variant="h5">Name:{patient.name} {genderIcon(patient)}</Typography>
         <Typography variant="body1">SSN: {patient.ssn}</Typography>
         <Typography variant="body1">Occupation: {patient.occupation}</Typography>
+        <Typography variant="h6" style={{ marginTop: '16px', marginBottom: '8px' }}>Entries:</Typography>
+          {patient.entries.map((entry) => (
+            <Typography key={entry.id} variant="body1" style={{ marginTop: '8px', marginBottom: '4px' }}>
+              {entry.date} {entry.description}
+              {entry.diagnosisCodes?.map((code) => {
+                return <li key={code} style={{ marginTop: '8px', marginBottom: '4px' }}>{code} {props.diagnosis.find(d => d.code === code)?.name}</li>;
+              })}
+            </Typography>
+          ))}
       </Paper>
     </div>
   )

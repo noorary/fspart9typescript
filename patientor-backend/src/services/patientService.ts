@@ -5,6 +5,7 @@ import { NewPatient, NonSensitivePatient, Patient} from '../types.ts';
 const patients: Patient[] = patientData;
 
 const getPatients = (): Patient[] => {
+    console.log(patientData);
     return patients;
 };
 
